@@ -8,7 +8,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.nio.charset.StandardCharsets;
 
-public class TestQuickStart {
+public class TestRotateGrid {
 
   @Test
   public void testNoArgument() throws Exception {
