@@ -26,6 +26,7 @@ public class ReversableDeque<T> implements Iterable<T> {
         }
     }
 
+    @SuppressWarnings("unchecked")
     public boolean equals(Object o)
     {
         if( o != null && o.getClass() == this.getClass())
