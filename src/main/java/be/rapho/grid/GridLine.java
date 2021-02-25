@@ -7,7 +7,6 @@ import be.rapho.collection.ReversableDeque;
 class GridLine implements Iterable<Integer> {
 
     ReversableDeque<Integer> line;
-    boolean isMarkedReversed;
 
     public GridLine(ReversableDeque<Integer> line )
     {
