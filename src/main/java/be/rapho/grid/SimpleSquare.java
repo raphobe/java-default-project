@@ -19,7 +19,6 @@ class SimpleSquare implements Square {
         if( o != null && o.getClass() == this.getClass())
         {
             SimpleSquare other = (SimpleSquare) o;
-
             return this.val.equals(other.val);
         }
         return false;
