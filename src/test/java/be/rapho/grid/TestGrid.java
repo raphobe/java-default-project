@@ -5,13 +5,6 @@ import static org.junit.Assert.assertNotEquals;
 
 import org.junit.Test;
 
-import java.util.Deque;
-import java.util.ArrayDeque;
-
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
-import java.nio.charset.StandardCharsets;
-
 public class TestGrid {
 
     @Test

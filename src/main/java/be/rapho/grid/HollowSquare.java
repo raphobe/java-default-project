@@ -1,7 +1,5 @@
 package be.rapho.grid;
 
-import be.rapho.grid.GridLine;
-
 class HollowSquare implements Square{
 
     GridLine topRow;

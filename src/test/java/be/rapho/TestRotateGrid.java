@@ -4,10 +4,6 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
-import java.nio.charset.StandardCharsets;
-
 public class TestRotateGrid {
 
   @Test
