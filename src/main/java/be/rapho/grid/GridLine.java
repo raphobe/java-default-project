@@ -14,16 +14,10 @@ class GridLine implements Iterable<Integer> {
         this.isMarkedReversed = false;
     }
 
-    public boolean contains(Integer inte)
-    {
-        return line.contains(inte);
-    }
     public void reverse()
     {
         this.isMarkedReversed = !this.isMarkedReversed;
     }
-
-
 
     public boolean equals(Object o)
     {
