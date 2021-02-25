@@ -1,6 +1,6 @@
 package be.rapho.grid;
 
-public class SimpleGrid implements Grid {
+class SimpleGrid implements Grid {
 
     SimpleSquare square;
     public SimpleGrid(SimpleSquare square)

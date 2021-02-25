@@ -1,5 +1,5 @@
 package be.rapho.grid;
 
-public interface Square {
+interface Square {
     public void rotate();
 }
