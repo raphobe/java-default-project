@@ -41,10 +41,15 @@ public class GridFactory {
             Grid innerGrid = deserialize(myGrid);
             return new ComplexGrid(sq, innerGrid);
         }
+        else if(myGrid.size() == 1)
+        {
+            Integer val = myGrid.peekFirst().peekFirst();
+            SimpleSquare ssq = new SimpleSquare(val);
+            return new SimpleGrid(ssq);
+        }
         else
         {
-            SimpleSquare ssq = new SimpleSquare(myGrid);
-            return new SimpleGrid(ssq);
+            return new EmptyGrid();
         }
     }
 

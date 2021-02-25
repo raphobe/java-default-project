@@ -1,14 +1,12 @@
 package be.rapho.grid;
 
-import java.util.Deque;
-
 class SimpleSquare implements Square {
 
-    Deque<Deque<Integer>> grid;
+    Integer val;
 
-    public SimpleSquare(Deque<Deque<Integer>> grid)
+    public SimpleSquare(Integer val)
     {
-        this.grid = grid;
+        this.val = val;
     }
 
     public void rotate()
@@ -16,26 +14,13 @@ class SimpleSquare implements Square {
         return;
     }
 
-    private boolean isEmpty()
-    {
-        return this.grid == null || this.grid.isEmpty();
-    }
-
-    private Integer getValue()
-    {
-        return this.grid.peekFirst().peekFirst();
-    }
-
     public boolean equals(Object o)
     {
         if( o != null && o.getClass() == this.getClass())
         {
             SimpleSquare other = (SimpleSquare) o;
-            if(this.isEmpty())
-            {
-                return other.isEmpty();
-            }
-            return this.getValue() == other.getValue();
+
+            return this.val.equals(other.val);
         }
         return false;
     }
