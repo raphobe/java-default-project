@@ -39,12 +39,12 @@ public class GridFactory {
             removeBotCol(myGrid);
 
             Grid innerGrid = deserialize(myGrid);
-            return new Grid(sq, innerGrid);
+            return new ComplexGrid(sq, innerGrid);
         }
         else
         {
-            Square ssq = new SimpleSquare(myGrid);
-            return new Grid(ssq, null);
+            SimpleSquare ssq = new SimpleSquare(myGrid);
+            return new SimpleGrid(ssq);
         }
     }
 
