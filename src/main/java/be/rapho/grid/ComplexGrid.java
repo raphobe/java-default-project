@@ -15,7 +15,6 @@ class ComplexGrid implements Grid {
     {
         shell.rotate();
         innerGrid.rotate();
-
         return;
     }
 

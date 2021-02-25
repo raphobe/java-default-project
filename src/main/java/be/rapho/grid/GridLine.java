@@ -1,22 +1,22 @@
 package be.rapho.grid;
 
-import java.util.Deque;
 import java.util.Iterator;
+
+import be.rapho.collection.ReversableDeque;
 
 class GridLine implements Iterable<Integer> {
 
-    Deque<Integer> line;
+    ReversableDeque<Integer> line;
     boolean isMarkedReversed;
 
-    public GridLine(Deque<Integer> line )
+    public GridLine(ReversableDeque<Integer> line )
     {
         this.line = line;
-        this.isMarkedReversed = false;
     }
 
     public void reverse()
     {
-        this.isMarkedReversed = !this.isMarkedReversed;
+        line.reverse();
     }
 
     public boolean equals(Object o)
@@ -24,27 +24,9 @@ class GridLine implements Iterable<Integer> {
         if( o != null && o.getClass() == this.getClass())
         {
             GridLine other = (GridLine) o;
-            Deque<Integer> theirLine = other.line;
-            Deque<Integer> myLine = line;
-            if(myLine.size() != theirLine.size())
-            {
-                return false;
-            }
-            return areDequesEqual(this.iterator(), other.iterator());
+            return this.line.equals(other.line);
         }
         return false;
-    }
-
-    private boolean areDequesEqual(Iterator<Integer> aDequeItr, Iterator<Integer> anotherDequeItr)
-    {
-        while( aDequeItr.hasNext() && anotherDequeItr.hasNext())
-        {
-            if(!aDequeItr.next().equals(anotherDequeItr.next()))
-            {
-                return false;
-            }
-        }
-        return true;
     }
 
     public int hashCode() {
@@ -52,10 +34,6 @@ class GridLine implements Iterable<Integer> {
     }
 
     public Iterator<Integer> iterator() {
-        if(this.isMarkedReversed)
-        {
-            return line.descendingIterator();
-        }
         return line.iterator();
     }
 }

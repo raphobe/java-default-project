@@ -1,6 +1,9 @@
 package be.rapho.grid;
 
 import java.util.Deque;
+
+import be.rapho.collection.ReversableDeque;
+
 import java.util.ArrayDeque;
 
 public class GridFactory {
@@ -26,8 +29,8 @@ public class GridFactory {
         if(myGrid.size() > 1)
         {
 
-            GridLine topRow = new GridLine(myGrid.peekFirst());
-            GridLine botRow = new GridLine(myGrid.peekLast());
+            GridLine topRow = getTopRow(myGrid);
+            GridLine botRow = getBotRow(myGrid);
             GridLine topCol = getLeftCol(myGrid);
             GridLine botCol = getRightCol(myGrid);
 
@@ -36,7 +39,7 @@ public class GridFactory {
             removeTopRow(myGrid);
             removeBotRow(myGrid);
             removeTopCol(myGrid);
-            removeBotCol(myGrid);
+            getAndRenameRightCol(myGrid);
 
             Grid innerGrid = deserialize(myGrid);
             return new ComplexGrid(sq, innerGrid);
@@ -51,6 +54,16 @@ public class GridFactory {
         {
             return new EmptyGrid();
         }
+    }
+
+    private static GridLine getTopRow(Deque<Deque<Integer>> myGrid) {
+        ReversableDeque<Integer> aDeque = new ReversableDeque<>(myGrid.peekFirst());
+        return new GridLine(aDeque);
+    }
+
+    private static GridLine getBotRow(Deque<Deque<Integer>> myGrid) {
+        ReversableDeque<Integer> aDeque = new ReversableDeque<>(myGrid.peekLast());
+        return new GridLine(aDeque);
     }
 
     private static void removeTopRow(Deque<Deque<Integer>> myGrid) {
@@ -69,7 +82,7 @@ public class GridFactory {
         }
     }
 
-    private static void removeBotCol(Deque<Deque<Integer>> myGrid) {
+    private static void getAndRenameRightCol(Deque<Deque<Integer>> myGrid) {
         for(Deque<Integer> row: myGrid)
         {
             row.removeLast();
@@ -85,7 +98,7 @@ public class GridFactory {
             leftCol.addLast(row.peekFirst());
         }
 
-        return new GridLine(leftCol);
+        return new GridLine(new ReversableDeque<Integer>(leftCol));
     }
 
     private static GridLine getRightCol(Deque<Deque<Integer>> myGrid)
@@ -97,6 +110,6 @@ public class GridFactory {
             rightCol.addLast(row.peekLast());
         }
 
-        return new GridLine(rightCol);
+        return new GridLine(new ReversableDeque<Integer>(rightCol));
     }
 }
