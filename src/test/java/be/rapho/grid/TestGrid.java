@@ -8,7 +8,7 @@ import org.junit.Test;
 public class TestGrid {
 
     @Test
-    public void Equals_GivenNonEqualGrid_ReturnsFalse() {
+    public void Equals_GivenNonEqualSimpleGrid_ReturnsFalse() {
       int[] myArr = { 1 };
       int[][] mySerializedGrid = { myArr };
       int[] myOtherArr = { 2 };

@@ -43,6 +43,15 @@ final class Square{
 
     public int hashCode()
     {
-        return 1;
+        int prime = 31;
+        int result = 1;
+
+        result = prime * result + topRow.hashCode();
+        result = prime * result + botRow.hashCode();
+
+        result = prime * result + botCol.hashCode();
+        result = prime * result + topCol.hashCode();
+
+        return result;
     }
 }

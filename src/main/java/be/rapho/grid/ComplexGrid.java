@@ -39,6 +39,12 @@ final class ComplexGrid implements Grid {
 
     public int hashCode()
     {
-        return 1;
+        int prime = 31;
+        int result = 1;
+
+        result = prime * result + shell.hashCode();
+        result = prime * result + innerGrid.hashCode();
+
+        return result;
     }
 }

@@ -25,6 +25,6 @@ final class SimpleGrid implements Grid {
 
     public int hashCode()
     {
-        return 1;
+        return val.hashCode();
     }
 }

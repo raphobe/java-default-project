@@ -14,6 +14,10 @@ public final class ReversableDeque<T> implements Iterable<T> {
         isReversed = false;
     }
 
+    public void add(T elem) {
+        aDeque.addLast(elem);
+    }
+
     public ReversableDeque(Deque<T> anotherDeque) {
         this();
         defensiveCopy(anotherDeque);
@@ -32,11 +36,10 @@ public final class ReversableDeque<T> implements Iterable<T> {
         if( o != null && o.getClass() == this.getClass())
         {
             ReversableDeque<T> other = (ReversableDeque<T>) o;
-            if(this.aDeque.size() != other.aDeque.size())
+            if(this.aDeque.size() == other.aDeque.size())
             {
-                return false;
+                return areDequesContentsEqual(this.iterator(),other.iterator());
             }
-            return areDequesContentsEqual(this.iterator(),other.iterator());
         }
         return false; 
     }

@@ -28,21 +28,12 @@ public final class GridFactory {
     {
         if(myGrid.size() > 1)
         {
+            Square outerMostShell = getOuterMostSquare(myGrid);
 
-            SquareSide topRow = getTopRow(myGrid);
-            SquareSide botRow = getBotRow(myGrid);
-            SquareSide topCol = getLeftCol(myGrid);
-            SquareSide botCol = getRightCol(myGrid);
-
-            Square sq = new Square(topRow, botRow, topCol, botCol);
-
-            removeTopRow(myGrid);
-            removeBotRow(myGrid);
-            removeTopCol(myGrid);
-            getAndRenameRightCol(myGrid);
+            removeOuterShell(myGrid);
 
             Grid innerGrid = deserialize(myGrid);
-            return new ComplexGrid(sq, innerGrid);
+            return new ComplexGrid(outerMostShell, innerGrid);
         }
         else if(myGrid.size() == 1)
         {
@@ -55,20 +46,25 @@ public final class GridFactory {
         }
     }
 
-    private static SquareSide getTopRow(Deque<Deque<Integer>> myGrid) {
-        ReversableDeque<Integer> aDeque = new ReversableDeque<>(myGrid.peekFirst());
-        return new SquareSide(aDeque);
+    private static Square getOuterMostSquare(Deque<Deque<Integer>> myGrid) {
+        SquareSide topRow = getTopRow(myGrid);
+        SquareSide botRow = getBotRow(myGrid);
+        SquareSide topCol = getLeftCol(myGrid);
+        SquareSide botCol = getRightCol(myGrid);
+
+        return new Square(topRow, botRow, topCol, botCol);
     }
 
-    private static SquareSide getBotRow(Deque<Deque<Integer>> myGrid) {
-        ReversableDeque<Integer> aDeque = new ReversableDeque<>(myGrid.peekLast());
-        return new SquareSide(aDeque);
+    private static void removeOuterShell(Deque<Deque<Integer>> myGrid) {
+        removeTopRow(myGrid);
+        removeBotRow(myGrid);
+        removeTopCol(myGrid);
+        removeBotCol(myGrid);
     }
 
     private static void removeTopRow(Deque<Deque<Integer>> myGrid) {
         myGrid.removeFirst();
     }
-
 
     private static void removeBotRow(Deque<Deque<Integer>> myGrid) {
         myGrid.removeLast();
@@ -81,7 +77,7 @@ public final class GridFactory {
         }
     }
 
-    private static void getAndRenameRightCol(Deque<Deque<Integer>> myGrid) {
+    private static void removeBotCol(Deque<Deque<Integer>> myGrid) {
         for(Deque<Integer> row: myGrid)
         {
             row.removeLast();
@@ -90,25 +86,37 @@ public final class GridFactory {
 
     private static SquareSide getLeftCol(Deque<Deque<Integer>> myGrid)
     {
-        Deque<Integer> leftCol = new ArrayDeque<>();
+        ReversableDeque<Integer> leftCol = new ReversableDeque<>();
 
         for(Deque<Integer> row: myGrid)
         {
-            leftCol.addLast(row.peekFirst());
+            leftCol.add(row.peekFirst());
         }
 
-        return new SquareSide(new ReversableDeque<Integer>(leftCol));
+        return new SquareSide(leftCol);
     }
 
     private static SquareSide getRightCol(Deque<Deque<Integer>> myGrid)
     {
-        Deque<Integer> rightCol = new ArrayDeque<>();
+        ReversableDeque<Integer> rightCol = new ReversableDeque<>();
 
         for(Deque<Integer> row: myGrid)
         {
-            rightCol.addLast(row.peekLast());
+            rightCol.add(row.peekLast());
         }
 
-        return new SquareSide(new ReversableDeque<Integer>(rightCol));
+        return new SquareSide(rightCol);
+    }
+     
+    private static SquareSide getTopRow(Deque<Deque<Integer>> myGrid) 
+    {
+        ReversableDeque<Integer> aDeque = new ReversableDeque<>(myGrid.peekFirst());
+        return new SquareSide(aDeque);
+    }
+
+    private static SquareSide getBotRow(Deque<Deque<Integer>> myGrid) 
+    {
+        ReversableDeque<Integer> aDeque = new ReversableDeque<>(myGrid.peekLast());
+        return new SquareSide(aDeque);
     }
 }
