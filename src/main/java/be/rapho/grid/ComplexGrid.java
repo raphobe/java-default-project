@@ -1,6 +1,6 @@
 package be.rapho.grid;
 
-class ComplexGrid implements Grid {
+final class ComplexGrid implements Grid {
 
     Square shell;
     Grid innerGrid;

@@ -4,11 +4,11 @@ import java.util.Iterator;
 
 import be.rapho.collection.ReversableDeque;
 
-class GridLine implements Iterable<Integer> {
+final class SquareSide implements Iterable<Integer> {
 
     ReversableDeque<Integer> line;
 
-    public GridLine(ReversableDeque<Integer> line )
+    public SquareSide(ReversableDeque<Integer> line )
     {
         this.line = line;
     }
@@ -22,7 +22,7 @@ class GridLine implements Iterable<Integer> {
     {
         if( o != null && o.getClass() == this.getClass())
         {
-            GridLine other = (GridLine) o;
+            SquareSide other = (SquareSide) o;
             return this.line.equals(other.line);
         }
         return false;

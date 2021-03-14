@@ -4,7 +4,7 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.Iterator;
 
-public class ReversableDeque<T> implements Iterable<T> {
+public final class ReversableDeque<T> implements Iterable<T> {
 
     Deque<T> aDeque;
     Boolean isReversed;

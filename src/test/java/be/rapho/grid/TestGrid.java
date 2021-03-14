@@ -11,7 +11,7 @@ public class TestGrid {
     public void Equals_GivenNonEqualGrid_ReturnsFalse() {
       int[] myArr = { 1 };
       int[][] mySerializedGrid = { myArr };
-      int[] myOtherArr = {2 };
+      int[] myOtherArr = { 2 };
       int[][] myOtherSerializedGrid = { myOtherArr };
       Grid someGrid = GridFactory.deserialize(mySerializedGrid);
       Grid someOtherGrid = GridFactory.deserialize(myOtherSerializedGrid);

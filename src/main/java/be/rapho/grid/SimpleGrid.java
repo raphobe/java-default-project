@@ -1,23 +1,24 @@
 package be.rapho.grid;
 
-class SimpleGrid implements Grid {
+final class SimpleGrid implements Grid {
 
-    SimpleSquare square;
-    public SimpleGrid(SimpleSquare square)
+    Integer val;
+
+    public SimpleGrid(Integer val)
     {
-        this.square = square;
+        this.val = val;
     }
 
     @Override
     public void rotate() {
-        square.rotate();
+        return;
     }
 
     public boolean equals(Object o)
     {
         if(o != null && o.getClass().equals(this.getClass())) {
             SimpleGrid other = (SimpleGrid) o;
-            return this.square.equals(other.square);
+            return this.val.equals(other.val);
         }
         return false;
     }

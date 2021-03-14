@@ -1,6 +1,6 @@
 package be.rapho.grid;
 
-public class EmptyGrid implements Grid {
+final class EmptyGrid implements Grid {
 
     @Override
     public void rotate() {

@@ -6,7 +6,7 @@ import be.rapho.collection.ReversableDeque;
 
 import java.util.ArrayDeque;
 
-public class GridFactory {
+public final class GridFactory {
 
     public static Grid deserialize(int[][] grid)
     {
@@ -29,12 +29,12 @@ public class GridFactory {
         if(myGrid.size() > 1)
         {
 
-            GridLine topRow = getTopRow(myGrid);
-            GridLine botRow = getBotRow(myGrid);
-            GridLine topCol = getLeftCol(myGrid);
-            GridLine botCol = getRightCol(myGrid);
+            SquareSide topRow = getTopRow(myGrid);
+            SquareSide botRow = getBotRow(myGrid);
+            SquareSide topCol = getLeftCol(myGrid);
+            SquareSide botCol = getRightCol(myGrid);
 
-            Square sq = new HollowSquare(topRow, botRow, topCol, botCol);
+            Square sq = new Square(topRow, botRow, topCol, botCol);
 
             removeTopRow(myGrid);
             removeBotRow(myGrid);
@@ -47,8 +47,7 @@ public class GridFactory {
         else if(myGrid.size() == 1)
         {
             Integer val = myGrid.peekFirst().peekFirst();
-            SimpleSquare ssq = new SimpleSquare(val);
-            return new SimpleGrid(ssq);
+            return new SimpleGrid(val);
         }
         else
         {
@@ -56,14 +55,14 @@ public class GridFactory {
         }
     }
 
-    private static GridLine getTopRow(Deque<Deque<Integer>> myGrid) {
+    private static SquareSide getTopRow(Deque<Deque<Integer>> myGrid) {
         ReversableDeque<Integer> aDeque = new ReversableDeque<>(myGrid.peekFirst());
-        return new GridLine(aDeque);
+        return new SquareSide(aDeque);
     }
 
-    private static GridLine getBotRow(Deque<Deque<Integer>> myGrid) {
+    private static SquareSide getBotRow(Deque<Deque<Integer>> myGrid) {
         ReversableDeque<Integer> aDeque = new ReversableDeque<>(myGrid.peekLast());
-        return new GridLine(aDeque);
+        return new SquareSide(aDeque);
     }
 
     private static void removeTopRow(Deque<Deque<Integer>> myGrid) {
@@ -89,7 +88,7 @@ public class GridFactory {
         }
     }
 
-    private static GridLine getLeftCol(Deque<Deque<Integer>> myGrid)
+    private static SquareSide getLeftCol(Deque<Deque<Integer>> myGrid)
     {
         Deque<Integer> leftCol = new ArrayDeque<>();
 
@@ -98,10 +97,10 @@ public class GridFactory {
             leftCol.addLast(row.peekFirst());
         }
 
-        return new GridLine(new ReversableDeque<Integer>(leftCol));
+        return new SquareSide(new ReversableDeque<Integer>(leftCol));
     }
 
-    private static GridLine getRightCol(Deque<Deque<Integer>> myGrid)
+    private static SquareSide getRightCol(Deque<Deque<Integer>> myGrid)
     {
         Deque<Integer> rightCol = new ArrayDeque<>();
 
@@ -110,6 +109,6 @@ public class GridFactory {
             rightCol.addLast(row.peekLast());
         }
 
-        return new GridLine(new ReversableDeque<Integer>(rightCol));
+        return new SquareSide(new ReversableDeque<Integer>(rightCol));
     }
 }
